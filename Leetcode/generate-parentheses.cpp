@@ -3,21 +3,21 @@
 
 class Solution {
 public:
-    void findallseq(vector<string> &ans, string s, int open, int close, int size) {
-      if (close < open)                                                                 // at any instance no of "(" used cant be < then no of ")" . 
+    void findallseq(vector<string> &ans, string s, int open, int close) {
+      if (close < open)                                                                 // at any instance no of '(' used cant be < then no of ')' . 
         return; 
-      if (s.length() == size * 2) {
+      if (!open and !close) {                                                         // both zero means size fulfilled
         ans.push_back(s); 
         return;
       }
-      if (open > 0) 
-        findallseq(ans, s + "(", open - 1, close, size); 
-      if (close > 0) 
-        findallseq(ans, s + ")", open, close - 1, size);           
+      if (open)                                                                      // add '('
+        findallseq(ans, s + "(", open - 1, close); 
+      if (close)                                                                     // add ')'
+        findallseq(ans, s + ")", open, close - 1);           
     }
     vector<string> generateParenthesis(int n) {
       vector<string> ans;
-      findallseq(ans, "", n, n, n); 
+      findallseq(ans, "", n, n); 
         return ans; 
     }
 };

@@ -4,7 +4,7 @@
 class Solution {
 public:
     void findallseq(vector<string> &ans, string s, int open, int close, int size) {
-      if (close < open)
+      if (close < open)                                                                 // at any instance no of "(" used cant be < then no of ")" . 
         return; 
       if (s.length() == size * 2) {
         ans.push_back(s); 
